@@ -3,18 +3,24 @@
 
 #include <iostream>
 #include "SDL2/SDL.h"
+#include "block.hpp"
+#include "snake.hpp"
 
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 800
 
 class Game
 {
+
 private:
     SDL_Renderer* renderer;
     SDL_Window* window;
     SDL_Event event;
 
     bool exitNow = false;
+    int time = 16;
+
+    Snake snake;
 
     void close()
     {
@@ -45,10 +51,12 @@ public:
             std::cout << "Failed to create renderer: ", SDL_GetError();
             exit(1);
         }
+
     }
 
-    void getInput();
     void gameLoop();
+    void getInput();
+
 };
 
 #endif

@@ -1,7 +1,16 @@
 CC = g++
 SDIR = game
-OUT = bin/Snake
+ODIR = bin
+OUT = Snake
 lflags = -lSDL2
 
 make:
-	$(CC) -o $(OUT) $(SDIR)/*.cpp $(lflags)
+	$(CC) -o $(ODIR)/$(OUT) $(SDIR)/*.cpp $(lflags)
+
+.PHONY: run
+run: make
+	./$(ODIR)/$(OUT)
+
+.PHONY: clean
+clean:
+	rm $(ODIR)/*
