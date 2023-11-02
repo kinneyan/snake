@@ -48,6 +48,9 @@ void Game::getInput()
         {
             switch (this->event.key.keysym.sym)
             {
+                case SDLK_ESCAPE:
+                    this->exitNow = true;
+                    break;
                 case SDLK_UP:
                 case SDLK_w:
                     if (this->snake.getIgnoreNextInput())

@@ -1,9 +1,15 @@
-#include "game.hpp"
+#include "main.hpp"
+
+void App::run()
+{
+    Game game(this->window);
+    game.start();
+    this->cleanup();
+}
 
 int main()
 {
-    Game game;
-    game.start();
-    
+    App app;
+    app.run();
     return 0;
 }
