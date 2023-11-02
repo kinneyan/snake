@@ -1,7 +1,6 @@
 #ifndef APPLE_H
 #define APPLE_H
 
-#include <stdlib.h>
 #include <time.h>
 #include <vector>
 #include "SDL2/SDL.h"
