@@ -6,7 +6,7 @@
 #include "block.hpp"
 #include "apple.hpp"
 
-#define MOMENTUM (0 - 20)
+#define MOMENTUM (0 - TILE_SIZE)
 
 class Snake
 {
@@ -17,6 +17,8 @@ private:
     int applesAte = 0;
     bool dead;
     std::vector<Block> body;
+    // only allow one input per timing cycle
+    bool ignoreNextInput = false;
 
     int round();
 
@@ -64,8 +66,19 @@ public:
         return this->dead;
     }
 
+    void setIgnoreNextInput(bool input)
+    {
+        this->ignoreNextInput = input;
+    }
+
+    bool getIgnoreNextInput()
+    {
+        return this->ignoreNextInput;
+    }
+
     void draw(SDL_Renderer* renderer);
-    bool canEat(Apple apple);
+    bool canEat(Block apple);
+    void checkAteSelf();
     void eat();
     void move();
     bool inBounds(int sWidth, int sHeight);

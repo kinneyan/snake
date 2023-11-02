@@ -32,6 +32,7 @@ void Game::gameLoop()
 
         // wait
         SDL_Delay(GAME_TIME);
+        this->snake.setIgnoreNextInput(false);
     }
 }
 
@@ -49,31 +50,55 @@ void Game::getInput()
             {
                 case SDLK_UP:
                 case SDLK_w:
+                    if (this->snake.getIgnoreNextInput())
+                    {
+                        this->snake.setIgnoreNextInput(false);
+                        break;
+                    }
                     if (this->snake.getMY() == 0 - MOMENTUM)
                         break;
                     this->snake.setMX(0);
                     this->snake.setMY(MOMENTUM);
+                    this->snake.setIgnoreNextInput(true);
                     break;
                 case SDLK_LEFT:
                 case SDLK_a:
+                    if (this->snake.getIgnoreNextInput())
+                    {
+                        this->snake.setIgnoreNextInput(false);
+                        break;
+                    }
                     if (this->snake.getMX() == 0 - MOMENTUM)
                         break;
                     this->snake.setMX(MOMENTUM);
                     this->snake.setMY(0);
+                    this->snake.setIgnoreNextInput(true);
                     break;
                 case SDLK_DOWN:
                 case SDLK_s:
+                    if (this->snake.getIgnoreNextInput())
+                    {
+                        this->snake.setIgnoreNextInput(false);
+                        break;
+                    }
                     if (this->snake.getMY() == MOMENTUM)
                         break;
                     this->snake.setMX(0);
                     this->snake.setMY(0 - MOMENTUM);
+                    this->snake.setIgnoreNextInput(true);
                     break;
                 case SDLK_RIGHT:
                 case SDLK_d:
+                    if (this->snake.getIgnoreNextInput())
+                    {
+                        this->snake.setIgnoreNextInput(false);
+                        break;
+                    }
                     if (this->snake.getMX() == MOMENTUM)
                         break;
                     this->snake.setMX(0 - MOMENTUM);
                     this->snake.setMY(0);
+                    this->snake.setIgnoreNextInput(true);
                     break;
             }
         }
@@ -99,5 +124,6 @@ void Game::checkRules()
         this->apple.randomizePosition(SCREEN_WIDTH, SCREEN_HEIGHT);
     }
 
+    this->snake.checkAteSelf();
 
 }
