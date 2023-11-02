@@ -17,7 +17,7 @@ build:
 	@mkdir -p bin
 
 .PHONY: run
-run: $(EXECUTABLE)
+run: all
 	./$(EXECUTABLE)
 
 .PHONY: clean
