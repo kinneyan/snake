@@ -8,9 +8,16 @@ void Snake::draw(SDL_Renderer* renderer)
     }
 }
 
-void Snake::eat(int x, int y)
+bool Snake::canEat(Apple apple)
 {
-    this->body.emplace(this->body.begin(), x, y);
+    std::vector<Block>::iterator i = this->body.begin();
+    return i->x() == apple.x() && i->y() == apple.y();
+}
+
+void Snake::eat()
+{
+    std::vector<Block>::iterator i = this->body.begin();
+    this->body.emplace(i, i->x() + this->momentum_x, i->y() + this->momentum_y);
 }
 
 void Snake::move()

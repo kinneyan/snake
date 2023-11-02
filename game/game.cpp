@@ -74,10 +74,13 @@ void Game::getInput()
 
 void Game::checkRules()
 {
-    if (!snake.inBounds(SCREEN_WIDTH, SCREEN_HEIGHT))
+    if (!this->snake.inBounds(SCREEN_WIDTH, SCREEN_HEIGHT))
     {
-        snake.setDead(true);
-        snake.setMX(0);
-        snake.setMY(0);
+        this->snake.setDead(true);
+        this->snake.setMX(0);
+        this->snake.setMY(0);
     }
+
+    if (this->snake.canEat(this->apple))
+        this->snake.eat();
 }

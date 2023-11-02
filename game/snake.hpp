@@ -4,6 +4,7 @@
 #include <vector>
 #include "SDL2/SDL.h"
 #include "block.hpp"
+#include "apple.hpp"
 
 #define MOMENTUM (0 - 20)
 
@@ -63,7 +64,8 @@ public:
     }
 
     void draw(SDL_Renderer* renderer);
-    void eat(int x, int y);
+    bool canEat(Apple apple);
+    void eat();
     void move();
     bool inBounds(int sWidth, int sHeight);
 
