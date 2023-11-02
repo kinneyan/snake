@@ -18,6 +18,7 @@ void Snake::eat()
 {
     std::vector<Block>::iterator i = this->body.begin();
     this->body.emplace(i, i->x() + this->momentum_x, i->y() + this->momentum_y);
+
 }
 
 void Snake::move()

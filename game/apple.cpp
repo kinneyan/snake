@@ -1,15 +1,32 @@
 #include "apple.hpp"
-#include <iostream>
+
+int Apple::roundToMultiple(int num, int multiple)
+{
+    if (multiple == 0)
+        return num;
+    int r = num % multiple;
+    if (r == 0)
+        return num;
+    return num + multiple - r;
+}
 
 void Apple::draw(SDL_Renderer* renderer)
 {
-    //std::cout << x() << ',' << y() << std::endl;
     SDL_Rect rect;
-    rect.x = x();
-    rect.y = y();
-    rect.w = w();
-    rect.h = h();
+    rect.x = this->x();
+    rect.y = this->y();
+    rect.w = this->w();
+    rect.h = this->h();
 
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
     SDL_RenderFillRect(renderer, &rect);
+}
+
+void Apple::randomizePosition(int sWidth, int sHeight)
+{
+    srand(time(NULL));
+    int x = ((rand() % sWidth - 0 + 1)) - 0;
+    int y = ((rand() % sHeight - 0 + 1)) - 0;
+    this->setX(roundToMultiple(x, TILE_SIZE));
+    this->setY(roundToMultiple(y, TILE_SIZE));
 }

@@ -15,6 +15,7 @@ private:
     int height = TILE_SIZE;
 
 public:
+    Block(){};
     Block(int aX, int aY)
     {
         this->pos_x = aX;

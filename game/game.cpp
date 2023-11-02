@@ -8,6 +8,9 @@ void Game::start()
 
 void Game::gameLoop()
 {
+    // randomize the initial apple position
+    this->apple.randomizePosition(SCREEN_WIDTH, SCREEN_HEIGHT);
+
     while (!this->exitNow)
     {
         // display the game
@@ -18,9 +21,9 @@ void Game::gameLoop()
         SDL_RenderPresent(this->renderer);
 
         // get user input and update game variables
+        getInput();
         this->snake.move();
         checkRules();
-        getInput();
 
         // wait
         SDL_Delay(GAME_TIME);
@@ -82,5 +85,8 @@ void Game::checkRules()
     }
 
     if (this->snake.canEat(this->apple))
+    {
         this->snake.eat();
+        this->apple.randomizePosition(SCREEN_WIDTH, SCREEN_HEIGHT);
+    }
 }
