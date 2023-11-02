@@ -4,6 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include "SDL2/SDL.h"
+#include "utils.hpp"
 #include "block.hpp"
 #include "snake.hpp"
 #include "apple.hpp"
@@ -46,6 +47,8 @@ public:
             std::cout << "Failed to create renderer: " << SDL_GetError() << std::endl;
             exit(1);
         }
+
+        this->snake.positionSnake(SCREEN_WIDTH, SCREEN_HEIGHT);
 
     }
 

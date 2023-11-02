@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "SDL2/SDL.h"
+#include "utils.hpp"
 #include "block.hpp"
 #include "apple.hpp"
 
@@ -26,8 +27,6 @@ public:
 
     Snake()
     {
-        // change default position
-        this->body.emplace_back(500, 500);
         this->dead = false;
     }
 
@@ -35,6 +34,13 @@ public:
     {
         this->body.emplace_back(x, y);
         this->dead = false;
+    }
+
+    void positionSnake(const int sWidth, const int sHeight)
+    {
+        int x = (sWidth / 2) + (TILE_SIZE / 2);
+        int y = (sHeight / 2) + (TILE_SIZE / 2);
+        this->body.emplace(this->body.begin(), roundToMultiple(x, TILE_SIZE), roundToMultiple(y, TILE_SIZE));
     }
 
     int getMX()

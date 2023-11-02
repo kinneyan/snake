@@ -5,13 +5,13 @@
 #include <time.h>
 #include <vector>
 #include "SDL2/SDL.h"
+#include "utils.hpp"
 #include "block.hpp"
 
 class Apple: public Block
 {
 
 private:
-    static int roundToMultiple(int num, int multiple);
 
 public:
     Apple(): Block(0, 0){};
