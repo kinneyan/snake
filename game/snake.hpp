@@ -5,10 +5,11 @@
 #include "SDL2/SDL.h"
 #include "block.hpp"
 
-#define MOMENTUM (0 - 6)
+#define MOMENTUM (0 - 20)
 
 class Snake
 {
+
 private:
     int momentum_x = 0;
     int momentum_y = 0;
@@ -51,7 +52,12 @@ public:
         this->momentum_y = my;
     }
 
-    bool isDead()
+    void setDead(bool dead)
+    {
+        this->dead = dead;
+    }
+
+    bool getDead()
     {
         return this->dead;
     }
@@ -59,6 +65,7 @@ public:
     void draw(SDL_Renderer* renderer);
     void eat(int x, int y);
     void move();
+    bool inBounds(int sWidth, int sHeight);
 
 };
 

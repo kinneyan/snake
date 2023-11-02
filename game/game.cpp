@@ -2,7 +2,6 @@
 
 void Game::gameLoop()
 {
-    int temp = 0;
     while (!this->exitNow)
     {
         // display the game
@@ -13,6 +12,7 @@ void Game::gameLoop()
 
         // get user input and update game variables
         this->snake.move();
+        checkRules();
         getInput();
 
         // wait
@@ -34,34 +34,45 @@ void Game::getInput()
         {
             switch (this->event.key.keysym.sym)
             {
-                // add checks inc ase user tries to move backwards
-                case SDLK_w:
-                    this->snake.setMX(0);
-                    this->snake.setMY(MOMENTUM);
-                    break;
-                case SDLK_a:
-                    this->snake.setMX(MOMENTUM);
-                    this->snake.setMY(0);
-                    break;
-                case SDLK_s:
-                    this->snake.setMX(0);
-                    this->snake.setMY(0 - MOMENTUM);
-                    break;
-                case SDLK_d:
-                    this->snake.setMX(0 - MOMENTUM);
-                    this->snake.setMY(0);
-                    break;
                 case SDLK_UP:
+                case SDLK_w:
+                    if (this->snake.getMY() == 0 - MOMENTUM || snake.getDead())
+                        break;
                     this->snake.setMX(0);
                     this->snake.setMY(MOMENTUM);
                     break;
                 case SDLK_LEFT:
+                case SDLK_a:
+                    if (this->snake.getMX() == 0 - MOMENTUM || snake.getDead())
+                        break;
+                    this->snake.setMX(MOMENTUM);
+                    this->snake.setMY(0);
                     break;
                 case SDLK_DOWN:
+                case SDLK_s:
+                    if (this->snake.getMY() == MOMENTUM || snake.getDead())
+                        break;
+                    this->snake.setMX(0);
+                    this->snake.setMY(0 - MOMENTUM);
                     break;
                 case SDLK_RIGHT:
+                case SDLK_d:
+                    if (this->snake.getMX() == MOMENTUM || snake.getDead())
+                        break;
+                    this->snake.setMX(0 - MOMENTUM);
+                    this->snake.setMY(0);
                     break;
             }
         }
+    }
+}
+
+void Game::checkRules()
+{
+    if (!snake.inBounds(SCREEN_WIDTH, SCREEN_HEIGHT))
+    {
+        snake.setDead(true);
+        snake.setMX(0);
+        snake.setMY(0);
     }
 }

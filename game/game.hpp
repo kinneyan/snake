@@ -13,12 +13,12 @@ class Game
 {
 
 private:
-    SDL_Renderer* renderer;
     SDL_Window* window;
+    SDL_Renderer* renderer;
     SDL_Event event;
 
     bool exitNow = false;
-    int time = 16;
+    int time = 64;
 
     Snake snake;
 
@@ -27,6 +27,9 @@ private:
         SDL_DestroyWindow(this->window);
         SDL_Quit();
     }
+
+    void getInput();
+    void checkRules();
 
 public:
     Game()
@@ -55,7 +58,6 @@ public:
     }
 
     void gameLoop();
-    void getInput();
 
 };
 
