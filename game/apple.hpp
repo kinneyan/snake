@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <time.h>
+#include <vector>
 #include "SDL2/SDL.h"
 #include "block.hpp"
 
@@ -17,8 +18,8 @@ public:
     Apple(int x, int y): Block(x, y){};
 
     void draw(SDL_Renderer* renderer);
-    void randomizePosition(int sWidth, int sHeight);
-    
+    void randomizePosition(int sWidth, int sHeight, std::vector<Block>::iterator head, std::vector<Block>::iterator tail);
+
 };
 
 #endif

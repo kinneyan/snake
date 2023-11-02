@@ -22,12 +22,27 @@ void Apple::draw(SDL_Renderer* renderer)
     SDL_RenderFillRect(renderer, &rect);
 }
 
-void Apple::randomizePosition(int sWidth, int sHeight)
+void Apple::randomizePosition(int sWidth, int sHeight, std::vector<Block>::iterator head, std::vector<Block>::iterator tail)
 {
     srand(time(NULL));
-    int x = ((rand() % (sWidth - TILE_SIZE) - 0 + 1)) - 0;
-    int y = ((rand() % (sHeight - TILE_SIZE) - 0 + 1)) - 0;
 
-    this->setX(roundToMultiple(x, TILE_SIZE));
-    this->setY(roundToMultiple(y, TILE_SIZE));
+    int xPos;
+    int yPos;
+
+    bool safePos = false;
+    while (!safePos)
+    {
+        safePos = true;
+        xPos = ((rand() % (sWidth - TILE_SIZE) - 0 + 1)) - 0;
+        yPos = ((rand() % (sHeight - TILE_SIZE) - 0 + 1)) - 0;
+
+        for (;head < tail; head++)
+        {
+            if (head->x() == xPos && head->y() == yPos)
+                safePos = false;
+        }
+    }
+
+    this->setX(roundToMultiple(xPos, TILE_SIZE));
+    this->setY(roundToMultiple(yPos, TILE_SIZE));
 }

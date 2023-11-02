@@ -26,6 +26,7 @@ public:
 
     Snake()
     {
+        // change default position
         this->body.emplace_back(500, 500);
         this->dead = false;
     }
@@ -74,6 +75,16 @@ public:
     bool getIgnoreNextInput()
     {
         return this->ignoreNextInput;
+    }
+
+    std::vector<Block>::iterator getHead()
+    {
+        return this->body.begin();
+    }
+
+    std::vector<Block>::iterator getTail()
+    {
+        return this->body.end();
     }
 
     void draw(SDL_Renderer* renderer);

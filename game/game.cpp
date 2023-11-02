@@ -9,7 +9,7 @@ void Game::start()
 void Game::gameLoop()
 {
     // randomize the initial apple position
-    this->apple.randomizePosition(SCREEN_WIDTH, SCREEN_HEIGHT);
+    this->apple.randomizePosition(SCREEN_WIDTH, SCREEN_HEIGHT, this->snake.getHead(), this->snake.getTail());
 
     while (!this->exitNow)
     {
@@ -124,7 +124,7 @@ void Game::checkRules()
         this->score += 100 * difficultyMult;
         // update difficultyMult based on speed
 
-        this->apple.randomizePosition(SCREEN_WIDTH, SCREEN_HEIGHT);
+        this->apple.randomizePosition(SCREEN_WIDTH, SCREEN_HEIGHT, this->snake.getHead(), this->snake.getTail());
     }
 
     this->snake.checkAteSelf();
