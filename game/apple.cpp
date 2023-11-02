@@ -25,8 +25,9 @@ void Apple::draw(SDL_Renderer* renderer)
 void Apple::randomizePosition(int sWidth, int sHeight)
 {
     srand(time(NULL));
-    int x = ((rand() % sWidth - 0 + 1)) - 0;
-    int y = ((rand() % sHeight - 0 + 1)) - 0;
+    int x = ((rand() % (sWidth - TILE_SIZE) - 0 + 1)) - 0;
+    int y = ((rand() % (sHeight - TILE_SIZE) - 0 + 1)) - 0;
+
     this->setX(roundToMultiple(x, TILE_SIZE));
     this->setY(roundToMultiple(y, TILE_SIZE));
 }

@@ -8,6 +8,7 @@
 
 class Apple: public Block
 {
+
 private:
     static int roundToMultiple(int num, int multiple);
 
@@ -17,6 +18,7 @@ public:
 
     void draw(SDL_Renderer* renderer);
     void randomizePosition(int sWidth, int sHeight);
+    
 };
 
 #endif

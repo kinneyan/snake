@@ -14,6 +14,7 @@ class Snake
 private:
     int momentum_x = 0;
     int momentum_y = 0;
+    int applesAte = 0;
     bool dead;
     std::vector<Block> body;
 

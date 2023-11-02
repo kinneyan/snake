@@ -13,6 +13,11 @@ void Game::gameLoop()
 
     while (!this->exitNow)
     {
+        // update score
+        std::stringstream title;
+        title << "Snake score: " << this->score;
+        SDL_SetWindowTitle(this->window, title.str().c_str());
+
         // display the game
         SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 255);
         SDL_RenderClear(this->renderer);
@@ -44,28 +49,28 @@ void Game::getInput()
             {
                 case SDLK_UP:
                 case SDLK_w:
-                    if (this->snake.getMY() == 0 - MOMENTUM || snake.getDead())
+                    if (this->snake.getMY() == 0 - MOMENTUM)
                         break;
                     this->snake.setMX(0);
                     this->snake.setMY(MOMENTUM);
                     break;
                 case SDLK_LEFT:
                 case SDLK_a:
-                    if (this->snake.getMX() == 0 - MOMENTUM || snake.getDead())
+                    if (this->snake.getMX() == 0 - MOMENTUM)
                         break;
                     this->snake.setMX(MOMENTUM);
                     this->snake.setMY(0);
                     break;
                 case SDLK_DOWN:
                 case SDLK_s:
-                    if (this->snake.getMY() == MOMENTUM || snake.getDead())
+                    if (this->snake.getMY() == MOMENTUM)
                         break;
                     this->snake.setMX(0);
                     this->snake.setMY(0 - MOMENTUM);
                     break;
                 case SDLK_RIGHT:
                 case SDLK_d:
-                    if (this->snake.getMX() == MOMENTUM || snake.getDead())
+                    if (this->snake.getMX() == MOMENTUM)
                         break;
                     this->snake.setMX(0 - MOMENTUM);
                     this->snake.setMY(0);
@@ -87,6 +92,12 @@ void Game::checkRules()
     if (this->snake.canEat(this->apple))
     {
         this->snake.eat();
+
+        this->score += 100 * difficultyMult;
+        // update difficultyMult based on speed
+
         this->apple.randomizePosition(SCREEN_WIDTH, SCREEN_HEIGHT);
     }
+
+
 }

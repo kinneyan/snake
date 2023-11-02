@@ -18,11 +18,13 @@ void Snake::eat()
 {
     std::vector<Block>::iterator i = this->body.begin();
     this->body.emplace(i, i->x() + this->momentum_x, i->y() + this->momentum_y);
-
+    ++this->applesAte;
 }
 
 void Snake::move()
 {
+    if (this->dead)
+        return;
     std::vector<Block>::iterator i = this->body.begin();
     this->body.emplace(i, i->x() + this->momentum_x, i->y() + this->momentum_y);
     this->body.pop_back();

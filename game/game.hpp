@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <iostream>
+#include <sstream>
 #include "SDL2/SDL.h"
 #include "block.hpp"
 #include "snake.hpp"
@@ -23,6 +24,8 @@ private:
 
     Snake snake;
     Apple apple;
+    int score = 0;
+    float difficultyMult = 1;
 
     void close()
     {
