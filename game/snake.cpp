@@ -1,5 +1,4 @@
 #include "snake.hpp"
-#include <iostream>
 
 void Snake::draw(SDL_Renderer* renderer)
 {
@@ -24,10 +23,9 @@ void Snake::move()
 bool Snake::inBounds(int sWidth, int sHeight)
 {
     std::vector<Block>::iterator i = this->body.begin();
-    std::cout << '(' << i->x() << ',' << i->y() << ')' << std::endl;
-    if (i->x() <= 0 || i->x() >= sWidth)
+    if (i->x() <= 0 || i->x() + TILE_SIZE >= sWidth)
         return false;
-    else if (i->y() <= 0 || i->y() >= sHeight)
+    else if (i->y() <= 0 || i->y() + TILE_SIZE >= sHeight)
         return false;
     return true;
 }

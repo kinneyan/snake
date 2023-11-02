@@ -3,6 +3,7 @@
 int main()
 {
     Game game;
-    game.gameLoop();
+    game.start();
+    
     return 0;
 }

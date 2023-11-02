@@ -5,9 +5,11 @@
 #include "SDL2/SDL.h"
 #include "block.hpp"
 #include "snake.hpp"
+#include "apple.hpp"
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 800
+#define GAME_TIME 64
 
 class Game
 {
@@ -18,9 +20,9 @@ private:
     SDL_Event event;
 
     bool exitNow = false;
-    int time = 64;
 
     Snake snake;
+    Apple apple;
 
     void close()
     {
@@ -30,6 +32,7 @@ private:
 
     void getInput();
     void checkRules();
+    void gameLoop();
 
 public:
     Game()
@@ -57,7 +60,7 @@ public:
 
     }
 
-    void gameLoop();
+    void start();
 
 };
 

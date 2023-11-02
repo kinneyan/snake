@@ -1,5 +1,11 @@
 #include "game.hpp"
 
+void Game::start()
+{
+    this->gameLoop();
+    this->close();
+}
+
 void Game::gameLoop()
 {
     while (!this->exitNow)
@@ -7,6 +13,7 @@ void Game::gameLoop()
         // display the game
         SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 255);
         SDL_RenderClear(this->renderer);
+        this->apple.draw(this->renderer);
         this->snake.draw(this->renderer);
         SDL_RenderPresent(this->renderer);
 
@@ -16,10 +23,8 @@ void Game::gameLoop()
         getInput();
 
         // wait
-        SDL_Delay(this->time);
+        SDL_Delay(GAME_TIME);
     }
-
-    close();
 }
 
 void Game::getInput()
