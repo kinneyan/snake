@@ -31,16 +31,32 @@ private:
     void close()
     {
         SDL_DestroyRenderer(this->renderer);
+        SDL_DestroyWindow(this->window);
+        SDL_Quit();
     }
 
     void getInput();
     void checkRules();
     void gameLoop();
+    void resetGame();
 
 public:
-    Game(SDL_Window* win)
+    Game()
     {
-        this->window = win;
+        // intialize SDL
+        if (SDL_Init(SDL_INIT_VIDEO) < 0)
+        {
+            std::cout << "Failed to initialize SDL: " << SDL_GetError() << std::endl;
+            exit(1);
+        }
+
+        this->window = SDL_CreateWindow("Snake", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+        if (this->window == NULL)
+        {
+            std::cout << "Failed to create window: " << SDL_GetError() << std::endl;
+            exit(1);
+        }
+
         this->renderer = SDL_CreateRenderer(this->window, -1, 0);
         if (this-> renderer == NULL)
         {

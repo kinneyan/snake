@@ -46,6 +46,11 @@ void Game::getInput()
         }
         else if (this->event.type == SDL_KEYDOWN)
         {
+            if (this->snake.getDead())
+            {
+                this->resetGame();
+                break;
+            }
             switch (this->event.key.keysym.sym)
             {
                 case SDLK_ESCAPE:
@@ -129,4 +134,13 @@ void Game::checkRules()
 
     this->snake.checkAteSelf();
 
+}
+
+void Game::resetGame()
+{
+    this->score = 0;
+    this->difficultyMult = 1;
+    this->snake = Snake();
+    this->snake.positionSnake(SCREEN_WIDTH, SCREEN_HEIGHT);
+    this->apple.randomizePosition(SCREEN_WIDTH, SCREEN_HEIGHT, this->snake.getHead(), this->snake.getTail());
 }
