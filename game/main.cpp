@@ -1,5 +1,9 @@
 #include "game.hpp"
 
+#ifdef main
+#undef main
+#endif
+
 int main()
 {
     Game game;
