@@ -14,7 +14,7 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(CFLAGS) $^ $(LIBS) -o $@
 
 win: CC = x86_64-w64-mingw32-g++
-win: CFLAGS = -Wall -mwindows
+win: CFLAGS = -Wall -mwindows -static-libgcc -static-libstdc++
 win: all
 
 build:
