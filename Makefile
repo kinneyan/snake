@@ -1,6 +1,6 @@
 CC = g++
-CFLAGS = -Wall
-LIBS = -lSDL2
+CFLAGS = `pkg-config --cflags sdl2`
+LIBS = `pkg-config --libs sdl2`
 SOURCES = $(wildcard game/*.cpp)
 OBJECTS = $(patsubst %.cpp, %.o, $(SOURCES))
 EXECUTABLE = bin/Snake
